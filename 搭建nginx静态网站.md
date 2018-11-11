@@ -1,8 +1,6 @@
 ## 1.准备 LNMP 环境
 LNMP 是 Linux、Nginx、MySQL 和 PHP 的缩写，是 WordPress 博客系统依赖的基础运行环境。我们先来准备 LNMP 环境
 
----
-
 * 安装 Nginx
 
     使用 yum 安装 Nginx：
@@ -47,7 +45,6 @@ LNMP 是 Linux、Nginx、MySQL 和 PHP 的缩写，是 WordPress 博客系统依
 
 
 ## 2.安装并配置 WordPress
----
 * 安装 WordPress
 
     配置好 LNMP 环境后，继续使用 yum 来安装 WordPress：
@@ -83,7 +80,6 @@ LNMP 是 Linux、Nginx、MySQL 和 PHP 的缩写，是 WordPress 博客系统依
     nginx -s reload
 
 ## 3.准备域名和解析
----
 * 域名注册
 
     如果您还没有域名，可以在腾讯云上选购
