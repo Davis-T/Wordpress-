@@ -7,6 +7,28 @@ LNMP 是 Linux、Nginx、MySQL 和 PHP 的缩写，是 WordPress 博客系统依
     yum install nginx -y
 
     修改 /etc/nginx/conf.d/default.conf，去除对 IPv6 地址的监听
+    ```
+    server {
+        listen       80 default_server;
+        # listen       [::]:80 default_server;
+        server_name  _;
+        root         /usr/share/nginx/html;
+
+        # Load configuration files for the default server block.
+        include /etc/nginx/default.d/*.conf;
+
+        location / {
+        }
+
+        error_page 404 /404.html;
+            location = /40x.html {
+        }
+
+        error_page 500 502 503 504 /50x.html;
+            location = /50x.html {
+        }
+    }
+    ```
 
     修改完成后，启动 Nginx：
     nginx
@@ -75,6 +97,23 @@ LNMP 是 Linux、Nginx、MySQL 和 PHP 的缩写，是 WordPress 博客系统依
 
     在 /etc/nginx/conf.d 创建 wordpress.conf 配置，参考下面的内容：
     wordpress.conf
+    ```
+    server {
+        listen 80;
+        root /usr/share/wordpress;
+        location / {
+            index index.php index.html index.htm;
+            try_files $uri $uri/ /index.php index.php;
+        }
+        # pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000
+        location ~ .php$ {
+            fastcgi_pass   127.0.0.1:9000;
+            fastcgi_index  index.php;
+            fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;
+            include        fastcgi_params;
+        }
+    }
+    ```
 
     配置后，通知 Nginx 进程重新加载：
     nginx -s reload
