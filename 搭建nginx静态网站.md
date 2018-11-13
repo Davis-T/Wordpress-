@@ -78,36 +78,52 @@ LNMP 是 Linux、Nginx、MySQL 和 PHP 的缩写，是 WordPress 博客系统依
 * 安装 PHP
 
     使用 yum 安装 PHP：
+    ```
     yum install php-fpm php-mysql -y
+    ```
 
     安装之后，启动 PHP-FPM 进程：
+    ```
     service php-fpm start
+    ```
 
-    启动之后，可以使用下面的命令查看 PHP-FPM 进程监听哪个端口 
+    启动之后，可以使用下面的命令查看 PHP-FPM 进程监听哪个端口
+    ``` 
     netstat -nlpt | grep php-fpm
+    ```
 
     把 PHP-FPM 也设置成开机自动启动：
+    ```
     chkconfig php-fpm on
+    ```
 
 
 ### 2.安装并配置 WordPress
 * 安装 WordPress
 
     配置好 LNMP 环境后，继续使用 yum 来安装 WordPress：
+    ```
     yum install wordpress -y
+    ```
 
     安装完成后，就可以在 /usr/share/wordpress 看到 WordPress 的源代码了。
 
 * 配置数据库
 
     进入 MySQL：
+    ```
     mysql -uroot --password='MyPas$word4Word_Press'
+    ```
 
     为 WordPress 创建一个数据库：
+    ```
     CREATE DATABASE wordpress;
+    ```
 
     MySQL 部分设置完了，我们退出 MySQL 环境：
+    ```
     exit
+    ```
 
     把上述的 DB 配置同步到 WordPress 的配置文件中，可参考下面的配置：
     wp-config.php
@@ -267,7 +283,7 @@ LNMP 是 Linux、Nginx、MySQL 和 PHP 的缩写，是 WordPress 博客系统依
     如果 ping 命令返回的信息中含有你设置的解析的 IP 地址，说明解析成功。大功告成！
 
     恭喜，您的 WordPress 博客已经部署完成，您可以通过浏览器访问博客查看效果。
-    
+
     通过IP地址查看：
     博客访问地址：http://132.232.246.53/wp-admin/install.php
 
